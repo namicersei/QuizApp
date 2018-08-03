@@ -18,9 +18,9 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
 
-  isActive: {
+  isAdmin: {
     type: Boolean,
-    default: true
+    default: false
   },
 
   name: {
@@ -79,23 +79,3 @@ UserSchema.set("toObject", { virtuals: true })
 
 
 module.exports = mongoose.model("User", UserSchema)
-
-// // ENTER A DUMMY USER for TESTING:
-// mongoose.connect('mongodb://127.0.0.1:27017/smartboard', function (err) {
-//   if (err) {
-//     return console.error(err);
-//   } else {
-//     User =  mongoose.model('User', UserSchema);
-//     var user0 = new User({
-//       email: 'test@example.com',
-//       password: 'qwerty',
-//       name: {
-//        first: 'Test',
-//        last: 'User'
-//       }
-//     })
-//     user0.save(function (err) {
-//       if (err) console.log(err);
-//     })
-//   }
-// });

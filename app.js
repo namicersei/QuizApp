@@ -7,18 +7,18 @@ const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 const session = require("express-session")
 // const helmet = require('helmet');
-// const cors = require("cors")
+const cors = require("cors")
 
 const config = require("./config")[process.env.NODE_ENV || "development"]
 
-const routes = require("./routes/web/index")
+const routes = require("./routes/rest/index")
 // const users = require('./routes/users');
 
 const app = express()
 
 // For Prod usage (SECURITY)
 // app.use(helmet())
-// app.use(cors())
+app.use(cors())
 
 mongoose.Promise = global.Promise
 mongoose.connect(config.database, { useMongoClient: true })
