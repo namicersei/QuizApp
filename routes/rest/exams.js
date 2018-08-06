@@ -41,26 +41,25 @@ module.exports = {
 // Ccompute score ********************************************
 
   evaluateMarks(req, res) {
-    let marks = 0
     const ansSheet = req.body.arrayOfAns
     Question
     .find({})
     .exec()
     .then((quesSet) => {
-      // ansSheet.forEach((element) => {
-      //   const requiredQuestion = quesSet.find(ques => String(ques._id) === String(element.quesId))
-      //   if (requiredQuestion.correctAnswer === element.ans) {
-      //     marks += 1
-      //   }
-      // })
-      // ansSheet.reduce()
-
+      const reducer = (sum, currValue) => {
+        const requiredQuestion = quesSet.find(ques => String(ques._id) === String(currValue.quesId))
+        if (requiredQuestion.correctAnswer === currValue.ans) {
+          return sum + 1
+        }
+        return sum
+      }
+      const marks = ansSheet.reduce(reducer, 0)
       return res.json({ score: marks })
     })
     .catch((err) => {
       res.status(400).json({
         msg: err.message
       })
-    })
+    })  
   }
 }
