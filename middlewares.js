@@ -5,7 +5,9 @@ const secretKey = "secretkey"
 module.exports = {
   verify(req, res, next) {
     const token = (req.headers.authorization).split(' ').pop()
+    console.log(token)
     const decoded = jwt.verify(token, secretKey)
+    console.log(decoded)
     if (decoded) {
       res.locals.isadmin = decoded.isAdmin
       next()

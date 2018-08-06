@@ -47,12 +47,13 @@ module.exports = {
     .find({})
     .exec()
     .then((quesSet) => {
-      ansSheet.forEach((element) => {
-        const requiredQuestion = quesSet.find(ques => String(ques._id) === String(element.quesId))
-        if (requiredQuestion.correctAnswer === element.ans) {
-          marks += 1
-        }
-      })
+      // ansSheet.forEach((element) => {
+      //   const requiredQuestion = quesSet.find(ques => String(ques._id) === String(element.quesId))
+      //   if (requiredQuestion.correctAnswer === element.ans) {
+      //     marks += 1
+      //   }
+      // })
+      // ansSheet.reduce()
 
       return res.json({ score: marks })
     })

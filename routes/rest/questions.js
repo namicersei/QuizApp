@@ -6,7 +6,8 @@ const Question = require("../../models/question")
 
 module.exports = {
   addQues(req, res) {
-    if (req.user.isAdmin) {
+    // console.log(res.locals.isadmin)
+    if (res.locals.isadmin) {
       const question = new Question(req.body)
       return question.save()
         .then(() => res.json({
